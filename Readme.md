@@ -12,6 +12,10 @@ This is a simple [Docker](https://www.docker.com/) setup to run a local WordPres
 
 1. Install [Docker](https://www.docker.com/).
 1. Clone this [repository](https://github.com/noreading/docker-for-wordpress).
+1. Delete the `.git` folder:
+   ```bash
+   rm -rf .git
+   ```
 1. Edit the file `docker/nginx/site.conf` and add the wanted local domain
    (e.g. dev.wordpress.com).
 1. Add the domain to your local `hosts` file.
