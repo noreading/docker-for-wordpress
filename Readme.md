@@ -12,6 +12,9 @@ This is a simple [Docker](https://www.docker.com/) setup to run a local WordPres
 
 1. Install [Docker](https://www.docker.com/).
 1. Clone this [repository](https://github.com/noreading/docker-for-wordpress).
+   ```bash
+   git clone git@github.com:noreading/docker-for-wordpress.git
+   ```
 1. Delete the `.git` folder:
    ```bash
    rm -rf .git
