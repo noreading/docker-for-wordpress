@@ -2,7 +2,7 @@ version: '3.7'
 services:
 
   web:
-    image: nginx:latest
+    image: nginx:1.17
     volumes:
       - ./:/var/www/html
       - ./docker/nginx/site.conf:/etc/nginx/conf.d/site.conf
@@ -22,7 +22,7 @@ services:
       - mariadb
 
   mariadb:
-    image: mariadb:latest
+    image: mariadb:10.4
     environment:
       MYSQL_ROOT_PASSWORD: secret
       MYSQL_DATABASE: wordpress

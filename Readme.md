@@ -4,9 +4,9 @@ This is a simple [Docker](https://www.docker.com/) setup to run a local WordPres
 
 **Included:**
 
-- [Nginx](https://www.nginx.com/)
-- [PHP](https://www.php.net) 7.3-FPM
-- [MariaDB](https://mariadb.org/)
+- [Nginx](https://www.nginx.com/) 1.17
+- [PHP](https://www.php.net) 7.3 FPM
+- [MariaDB](https://mariadb.org/) 10.4
 
 ## Installation
 
