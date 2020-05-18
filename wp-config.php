@@ -62,7 +62,7 @@ define('NONCE_SALT',       '{~DqAv}sJ,+G7}lF/njY9IkyCLq*qG/Z.)_DQ-.:f>h;&v=+s #w
  * verschiedene WordPress-Installationen betreiben.
  * Bitte verwende nur Zahlen, Buchstaben und Unterstriche!
  */
-$table_prefix = 'kookyarts_';
+$table_prefix = 'wpdev_';
 
 /**
  * Für Entwickler: Der WordPress-Debug-Modus.
@@ -76,7 +76,7 @@ $table_prefix = 'kookyarts_';
  *
  * @link https://codex.wordpress.org/Debugging_in_WordPress
  */
-define( 'WP_DEBUG', false );
+define( 'WP_DEBUG', true );
 
 /* Das war’s, Schluss mit dem Bearbeiten! Viel Spaß. */
 /* That's all, stop editing! Happy publishing. */

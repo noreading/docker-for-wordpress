@@ -1,25 +1,42 @@
-FROM php:7.3-fpm
-
-# Update package list
-RUN apt-get update
+FROM php:7.4-fpm-alpine
 
 # Install additional packages and PHP Extensions
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --fix-missing \
-        apt-utils \
-        gnupg \
-        libfreetype6-dev \
-        libjpeg62-turbo-dev \
-        libmcrypt-dev \
-        libpng-dev \
-        default-libmysqlclient-dev \
-        libbz2-dev \
-        libmemcached-dev \
-        libsasl2-dev \
-        zlib1g-dev \
-        libzip-dev \
-        unzip \
-        vim \
-    && docker-php-ext-install mysqli pdo_mysql zip \
-    && pecl install redis \
-    && docker-php-ext-enable redis.so \
-    && apt-get auto-remove -y
+RUN apk --no-cache --update add \
+            libxml2-dev \
+            curl-dev \
+            gnupg \
+            libmcrypt-dev \
+            libpng-dev \
+            libjpeg-turbo-dev \
+            freetype-dev \
+            libzip-dev \
+            oniguruma-dev \
+            unzip
+
+# Cleanup
+RUN rm -rf /tmp/*
+RUN rm -rf /var/cache/apk/*
+
+# Configure PHP Extensions
+RUN docker-php-ext-configure zip && \
+    docker-php-ext-configure mysqli && \
+    docker-php-ext-configure pcntl && \
+    docker-php-ext-configure gd --with-jpeg=/usr/include/ \
+                                --with-freetype=/usr/include/
+
+# Install PHP Extensions
+RUN docker-php-ext-install pcntl \
+            zip \
+            pdo_mysql \
+            mysqli \
+            gd
+
+# Use the default production configuration
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+
+# Override with custom settings
+COPY php-dev.ini $PHP_INI_DIR/conf.d/
+
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
